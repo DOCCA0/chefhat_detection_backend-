@@ -1,0 +1,534 @@
+/*人员详情*/
+
+*{ margin:0; padding:0; list-style:none;}
+.tcdPageCode{padding: 20px 0;color: #ccc;text-align:center;}
+.tcdPageCode ul li{padding:0 5px !important;cursor:pointer;display: inline-block;color: #428bca;height: 25px;	line-height: 25px;border: 1px solid #b9b7b7;	margin: 0 2px;border-radius: 4px;}
+.tcdPageCode ul li:nth-child(1):hover,.tcdPageCode ul li:nth-child(2):hover{text-decoration: none;border: 1px solid #428bca;}
+.tcdPageCode .pages{padding-right: 0;margin: 0 !important;border-bottom-right-radius: 0 !important;border-top-right-radius: 0 !important;border-right: none !important}
+.tcdPageCode .page{padding-left: 0;margin: -6px !important;border-top-left-radius:0  !important;border-bottom-left-radius:0  !important}
+/*.tcdPageCode span.current{display: inline-block;height: 25px;line-height: 25px;padding: 0 6px;margin: 0 2px;color: #fff;background-color: #428bca;	border: 1px solid #428bca;border-radius: 4px;vertical-align: middle;}*/
+/*.tcdPageCode span.disabled{	display: inline-block;height: 25px;line-height: 25px;padding: 0 6px;margin: 0 2px;	color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;}*/
+.red{color: red;margin-left: -4px !important;}
+.green{color: green;margin-left: -4px !important;}
+.yellow{color: #f3b506;margin-left: -4px !important;}
+/*.btn-success{background-color: #64adcf !important;}*/
+.personMain {
+    display: flex;
+}
+
+.personLeft {
+    flex: 0 0 200px;
+}
+
+.personLeft img {
+    width: 180px;
+    height: 200px;
+    margin: 10px 0 0 10px
+}
+
+.personRight {
+    flex: 1;
+    margin: 15px 0 0 20px;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.personRight button {
+    margin: 6px 6px 0 0
+}
+
+.personRight > div {
+    margin-top: 10px;
+}
+
+.personRight label {
+    font-weight: bold
+}
+
+.BMap_stdMpCtrl {
+    top: 50px !important;
+}
+
+/*.aui_inner{display: none !important;}*/
+body, html, #allmap {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    font-family: "微软雅黑";
+}
+
+.check {
+    position: absolute;
+    padding: 20px;
+    right: 10px;
+    top: 50px;
+    background-color: #07141e;
+    color: #fff;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+.color {
+    color: #42a8dc
+}
+
+.liActive {
+    background-color: #547aa9 !important;
+}
+
+.box {
+    display: none
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+    overflow: hidden
+}
+
+.warn {
+    display: block
+}
+
+.myMap_left {
+    width: 80%;
+    position: relative;
+    margin-right: 0.5%
+}
+
+.bill {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 100px
+}
+
+.bill p {
+    text-align: center;
+    line-height: 26px;
+    background-color: rgb(0, 160, 233);
+    font-size: 12px;
+    border-bottom-color: #95B8E7;
+    color: #fff;
+    font-weight: 500
+}
+
+.bill p span {
+    font-weight: normal;
+    margin-left: 6px;
+    cursor: pointer
+}
+
+.bill ul li {
+    padding-left: 12px;
+    line-height: 32px;
+}
+
+.bill ul li input {
+    float: left;
+    margin: 10px 8px 0 0
+}
+
+.bill ul li span {
+    float: left;
+    color: #fff !important;
+}
+
+.bill ul li i {
+    background-image: url(../img/toolbar.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.bill ul li span {
+    line-height: 34px;
+    cursor: pointer;
+    color: #000
+}
+
+.bill ul li span:hover {
+    color: #ec971f
+}
+
+.bill01 {
+    background-position: 0 -50px;
+    width: 24px;
+    height: 25px;
+    margin: 5px 10px 0 0;
+}
+
+.bill02 {
+    background-position: -193px -50px;
+    width: 24px;
+    height: 24px;
+    top: 5px;
+    margin-right: 10px;
+}
+
+.bill03 {
+    background-position: -138px -50px;
+    width: 24px;
+    height: 24px;
+    top: 5px;
+    margin-right: 10px;
+}
+
+.bill04 {
+    background-position: -167px -50px;
+    width: 22px;
+    height: 22px;
+    top: 5px;
+    margin-right: 12px;
+}
+
+.bill05 {
+    background-position: -247px -50px;
+    width: 24px;
+    height: 24px;
+    top: 5px;
+    margin-right: 10px;
+}
+
+.bill06 {
+    background-position: -224px -50px;
+    width: 24px;
+    height: 24px;
+    top: 5px;
+    margin-right: 10px;
+}
+
+.myMap_right {
+    width: 19.5%;
+    height: 100%;
+    background-color: #fff
+}
+
+.myMapNav ul li {
+    float: left;
+    width: 33.333%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 36px;
+    cursor: pointer;
+    background-color: #00a0e9;
+    color: #fff;
+    font-weight: 500
+}
+
+.EChart {
+    padding-top: 8px
+}
+
+.notice {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #f5f5f5;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    box-shadow: 1px 1px 2px #968383
+}
+
+.notice p {
+    float: left;
+    padding-left: 10px
+}
+
+.map_btn {
+    float: right
+}
+
+.map_btn span {
+    display: inline-block;
+    line-height: 36px;
+    cursor: pointer
+}
+
+.first {
+    padding-right: 6px
+}
+
+.two {
+    margin-right: 20px
+}
+
+.wrench {
+    position: fixed;
+    top: 37px;
+    right: 1px;
+    border: 1px #ccc solid;
+    width: 200px;
+    border-right: none;
+    display: none;
+    border-left: 6px #42a8dc solid
+}
+
+.wrench p {
+    line-height: 30px;
+    background-color: #42a8dc;
+    color: #fff;
+    padding-left: 8px;
+    font-weight: bold;
+    box-shadow: 1px 1px 2px #968383;
+    margin-bottom: 1px
+}
+
+.wrench ul {
+    padding-left: 8px;
+    background-color: #fff
+}
+
+.wrench ul li {
+    padding: 4px 0
+}
+
+.wrench ul li input {
+    margin-right: 4px
+}
+
+.search {
+    position: fixed;
+    top: 60px;
+    left: 30px;
+    display: none;
+    box-shadow: 1px 1px 2px #968383
+}
+
+.search input {
+    width: 300px;
+    height: 38px;
+    border: 1px #ccc solid;
+    border-right: none;
+    float: left
+}
+
+.search button {
+    width: 50px;;
+    margin-top: -1px;
+    height: 38px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #42a8dc;
+    float: left;
+    border: none
+}
+
+.mapSearch {
+    margin-top: 10px;
+    position: relative
+}
+
+.mapSearch label {
+    font-size: 12px;
+    margin-left: 4px
+}
+
+.mapSearch input {
+    border-radius: 4px;
+    border: 1px #95B8E7 solid;
+    width: 66%
+}
+.mapSearch span {
+    position: absolute;
+    color: #95B8E7;
+    right: 7%;
+    top: 4px;
+    cursor: pointer
+}
+.mapResult {
+    padding: 15px 0 10px 0;
+    border-bottom: 1px #ccc solid
+}
+
+.mapResult button {
+    width: 50px;
+    height: 24px;
+    border: 1px #95B8E7 solid;
+    border-radius: 4px;
+    margin-right: 11px
+}
+
+
+
+.mapResult span {
+    font-size: 14px;
+    margin-left: 6px;
+    font-weight: bold;
+    color: #64adcf ;
+}
+
+.informationMain {
+    overflow-y: auto
+}
+
+.informationMain ul li {
+    padding: 4px 6px;
+    font-size: 12px;
+    line-height: 22px;
+    border-bottom: 1px #ccc solid
+}
+
+.informationMain .text {
+    color: #547aa9 ;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.informationMain .text1 {
+    cursor: pointer;
+}
+
+.informationMain ul span {
+    width: 16px;
+    height: 16px;
+    margin: 4px 10px 0 12px
+}
+
+.mapResultMain ul li {
+    padding: 4px 6px;
+    font-size: 12px;
+    line-height: 22px;
+    border-bottom: 1px #ccc solid
+}
+
+.mapResultMain .text {
+    color: #547aa9;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.mapResultMain .text1 {
+    cursor: pointer;
+}
+
+.mapResultMain ul span {
+    width: 16px;
+    height: 16px;
+    margin: 4px 2px 0 4px
+}
+
+.specialNav {
+    padding-top: 5px;
+    border-top: 1px #ccc solid;
+    margin-top: 5px
+}
+.videoTree{
+    padding-top: 5px;
+    border-top: 1px #ccc solid;
+    margin-top: 5px
+}
+
+.specialNav ul li {
+    float: left;
+    width: 33.333%;
+    padding: 5px 0;
+    cursor: pointer
+}
+
+.specialNavImg {
+    width: 28px;
+    height: 24px;
+    margin: 0 auto;
+}
+
+.mapIcon01 {
+    background: url(../img/map_photo.png) no-repeat -126px -23px
+}
+
+.mapIcon02 {
+    background: url(../img/map_photo.png) no-repeat -98px -122px;
+}
+
+.mapIcon03 {
+    background: url(../img/map_photo.png) no-repeat -126px -73px;
+}
+
+.mapIcon04 {
+    background: url(../img/map_photo.png) no-repeat -98px -23px;
+}
+
+.mapIcon05 {
+    background: url(../img/map_photo.png) no-repeat -126px -48px;
+}
+
+.mapIcon06 {
+    background: url(../img/map_photo.png) no-repeat -97px -48px;
+}
+
+.mapIcon07 {
+    background: url(../img/map_photo.png) no-repeat -98px -99px;
+}
+
+.mapIcon08 {
+    background: url(../img/map_photo.png) no-repeat -159px -170px;
+}
+
+.mapIcon09 {
+    background: url(../img/map_photo.png) no-repeat -126px -0px;
+}
+
+.mapIcon010 {
+    background: url(../img/map_photo.png) no-repeat -98px -0px;
+}
+
+.mapIcon11 {
+    background: url(../img/map_photo.png) no-repeat -98px -70px;
+}
+
+.mapIcon12 {
+    background: url(../img/map_photo.png) no-repeat -126px -122px
+}
+
+.specialNav p {
+    text-align: center;
+    font-size: 12px
+}
+
+.carSearch {
+    display: none;
+    border-radius: 4px;
+    width: 400px;
+    height: 200px;
+    background-color: #4b698e;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    color: #fff;
+    /*border: 1px #ccc solid;*/
+    z-index: 99999999;
+    box-shadow: 3px 3px 10px rgb(99, 84, 84);
+}
+.carSearch h5{
+    margin: 0;
+    line-height: 36px;
+    padding-left: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 1px #828282 solid;
+}
+.carSearch>div{
+    padding: 0 12px;
+}
+.carSearch p{
+    margin: 12px 0;
+}
+.carSearch label{
+    width: 60px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: right;
+}
+.carSearch input,.carSearch select{
+    border: 1px #ccc solid;
+    border-radius: 2px;
+    color: #07141e;
+    width: 120px;
+    height: 28px;
+}
+.carBtn{width: 180px;margin: 30px auto 0 auto}
+.carBtn button{width: 60px;margin-right: 10px}

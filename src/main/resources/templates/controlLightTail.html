@@ -1,0 +1,184 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>举报登记表</title>
+    <link href="css/tail.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/about.css">
+	<script src="js/jquery-2.2.0.min.js"></script>
+	<script src="js/bstable/js/bootstrap.min.js"></script>
+	<script src="js/layer_v2.1/layer/layer.js"></script>
+</head>
+<body style="border-radius: 8px;">
+<form>
+    <div class="top table2_top">
+        <div class="l_left" style="width: 60%;height: 90%">
+            <div class="top_out">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>编号<span>*</span></td>
+                        <td colspan="3"><input type="text"    minlength ="2" value="100137" class="long_text01"></td>
+                    </tr>
+                    <tr>
+
+                        <td>灯具名称<span>*</span></td>
+                        <td><input type="text" class="long_text" value=""></td>
+                        <td>灯具类型<span></span></td>
+                        <td><input type="text" class="long_text" value=""></td>
+                    </tr>
+                    <tr>
+
+                        <td>品牌<span></span></td>
+                        <td><input type="text"  value=""></td>
+                        <td>安装时间<span></span></td>
+                        <td><input type="text"  value=""></td>
+
+                    </tr>
+                    <tr>
+                        <td>电流<span></span></td>
+                        <td><input type="text"></td>
+                        <td>电压<span></span></td>
+                        <td><input type="text"></td>
+
+                    </tr>
+                    <tr>
+                        <td>在线状态</td>
+                        <td><select><option>在线</option></select></td>
+                        <td>开关状态<span></span></td>
+                        <td><select><option>可用</option></select></td>
+
+                    </tr>
+
+
+
+                    </tbody>
+                </table>
+                <table class="table">
+                    <tr>
+                        <td>坐标位置<span></span></td>
+
+                        <td colspan="3">
+                            <input placeholder="X坐标" type="text" class="pointInput" /> <input placeholder="Y坐标" type="text" class="pointInput"/><input type="button" value="点击选择" class="check_btn"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>备注<span></span></td>
+                        <td colspan = "3" style="text-align: left"><textarea style="width: 510px"></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>图片<span></span></td>
+                        <td colspan = "3" style="text-align: left">
+                            <img  class="reportImg"  src="img/noPic01.jpg"/>
+                            <img  class="reportImg "
+                                  src="img/noPic01.jpg"/>
+                            <img  class="reportImg "
+                                  src="img/noPic01.jpg"/>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="rightDIV" class="r_right checkMap" >
+
+		</div>
+        <div class="notice_bot">
+            <div class="l_left"><input type="checkbox" checked="checked"/>保存并关闭窗口</div>
+            <div class="r_right but_p">
+				<!--<select style="">
+					<option>核查</option>
+				</select>-->
+				<!--<button class="but_save btn-warning" type="button" style="background-color: #963232">误报</button> -->
+
+				<button class="but_save btn-warning" type="button" onclick="Cancel()">保存</button>
+				<button class="but_close" onclick="Cancel()">取消</button>
+			</div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=5ieMMexWmzB9jivTq6oCRX9j&callback"></script>
+<script>
+//    alert(window.location.href.split("?")[1]);
+    function Cancel() {
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
+    }
+    function save(){
+        layer.msg('数据提交中', {
+            icon: 16,
+            shade: 0.01,
+            time: 20000
+        });
+        setTimeout(function(){
+            layer.closeAll('dialog');
+        }, 3000);
+    }
+function imgBig(){
+    layer.open({
+        type: 2,
+        title: '图片信息',
+        shadeClose: true,
+        shade: 0.5,
+        skin: 'layui-layer-rim',
+        closeBtn:1,
+        area: ['360px', '300px'],
+        content: 'imgBig.html'
+    });
+}
+$(function(){
+    $(".reportImg").click(function(){
+        imgBig();
+    });
+	debugger;
+	var height=$("#rightDIV").height();
+	var width=$("#rightDIV").width();
+	$(".event_list").css("height",height);
+	$(".event_list").css("width",width-1);
+
+})
+//转派
+function trans(){
+    layer.open({
+        type: 2,
+        title: '转派至',
+        shadeClose: true,
+        shade: 0.5,
+        skin: 'layui-layer-rim',
+        closeBtn:1,
+        area: ['650px', '380px'],
+        content: 'riverTree.html'
+    });
+}
+</script>
+<script>
+    // 百度地图API功能
+    var map = new BMap.Map("rightDIV");    // 创建Map实例
+
+    var point = new BMap.Point(104.557183, 30.40643);
+    map.centerAndZoom(point, 15);
+
+    //添加地图类型控件
+    map.addControl(new BMap.MapTypeControl({
+        mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));
+    map.setCurrentCity("简阳");          // 设置地图显示的城市 此项是必须设置的
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+    var circle = new BMap.Circle(point,500,{strokeColor:"red", strokeWeight:2, strokeOpacity:0.5}); //创建圆
+    //添加覆盖物
+    function add_overlay(){
+
+        map.addOverlay(circle);            //增加圆
+
+    }
+    function init(){
+        add_overlay();
+    }
+</script>
+</body>
+</html>

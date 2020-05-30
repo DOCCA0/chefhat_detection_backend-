@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login</title>
+<link href="css/MemberLogin.css" rel='stylesheet' type='text/css' />
+</head>
+<body style="overflow: hidden">
+	<div class="main">
+		<div class="login-form">
+			<h1>后台管理</h1>
+			<div class="head"><img src="../../../img/adminLogin.png" alt=""/></div>
+			<form id="loginForm">
+
+
+
+				<ul>
+
+					<li>
+	
+						
+	
+						<input type="text" name="yourname" placeholder="请输入用户名"  onblur="checkna()" required/><span class="tips" id="divname">
+	
+					</li>
+	
+					<li>
+	
+					
+	
+						<input type="password" name="yourpass" placeholder="请输入你的密码" onblur="checkpsd1()" required/><span class="tips" id="divpassword1">
+	
+					</li>
+	
+				</ul>
+
+
+
+
+
+
+				<select id="sys">
+					<option value="1">运维管理</option>
+					<option value="2">餐厅用户</option>
+
+				</select>
+
+				<div class="submit">
+					<input type="button" value="登录" id="btn_login" class="butSyley">
+					<input type="checkbox" id="rememberMe"/><label class="lableStyle">记住密码</label>
+					<a href="#" class="aSyle">忘记密码?</a>
+				</div>
+
+			</form>
+		</div>
+	</div>
+	<div class="loginBtn" >
+
+	</div>
+	<script src="../js/jquery/jQuery-2.2.0.min.js"></script>
+	<script>
+        $(document).ready(function() {
+
+            $('#btn_login').click(function(){
+                debugger;
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+					data:{
+                        sys:$("#sys").val(),
+                        username:$("#username").val(),
+                        password:$("#password").val(),
+                        rememberMe:$('#rememberMe').is(":checked")?1:0
+                    },
+                    url: "/sys/login.shtm",
+                    success: function (result) {
+                        debugger;
+                        if (result.code == 200) {
+                            window.location.href =  '/page/index.shtm?sys='+result.sys;
+                        }else{
+                            alert(result.msg);
+                        }
+                    },
+                    error : function() {
+                    }
+                });
+			});
+
+
+        });
+	</script>
+</body>
+</html>

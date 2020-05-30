@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/chefhat_detection?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 2947
+    driver-class-name: com.mysql.jdbc.Driver
+  thymeleaf:
+    cache: false
+server:
+  port: 8081

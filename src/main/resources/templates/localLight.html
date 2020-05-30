@@ -1,0 +1,142 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
+    <title></title>
+    <link href="js/bstable/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css" />
+    <link href="css/table.css" rel="stylesheet" type="text/css" />
+    <style>
+        .department_main{padding: 5px 5px 0 5px}
+        .department_main span{
+            display: none;
+        }
+        .department_main label{width: 20%;text-align: right;font-size: 12px;display: inline-block}
+        .department_main input{width: 78%;margin-right: 1%;height: 30px;border: 1px #ccc solid;background-color: #fff;border-radius: 4px;}
+        .department_main select{width: 78%;margin-right: 1%;height: 30px;border: 1px #ccc solid;background-color: #fff;border-radius: 4px;}
+        .department_main textarea{resize: none;border: 1px #ccc solid;width: 78%;height: 150px;background-color: #fff;border-radius: 4px}
+        .departments_btn{width: 60px;margin: 20px auto 0 auto;display: none}
+        .departments_btn button{width: 58px;height: 28px;line-height: 28px;border: none; background-color: #5cb85c;color: #fff;border-radius: 4px;  }
+        .department_top{position: absolute;top:30px;right: 10px}
+        .department_top button{height: 28px;line-height: 28px;border: none; background-color: #5cb85c;color: #fff;border-radius: 4px;padding: 0 6px}
+        .wh{
+            width: 60%;
+
+        }
+        .divMap{
+            width: 39%;
+            margin-right: 1%;
+            height: 300px;
+        }
+        .whDiv{
+            width: 98%;
+            margin-left: 1%;
+            float: left;
+        }
+    </style>
+</head>
+<body style="background-color: #ecf0f5;font-family: 微软雅黑;color: #475059;overflow: auto"onload="init()">
+<div class="news_main">
+
+    <div class="l_left news_left">
+        <h6>区域目录</h6>
+        <div class="tree_left_top" style="height: 90%;overflow: auto">
+            <div class=" order_ztree l_left organize_ztree" style="width: 100%">
+                <p><ul id="treeDemo" class="ztree"  style=" overflow:auto;margin-left: 20px"></ul></p>
+            </div>
+        </div>
+    </div>
+    <div class="l_left news_right">
+        <h6>区域详情</h6>
+        <div style="border-bottom: 1px #ccc solid;padding-bottom: 8px;">
+            <p style="line-height: 24px;font-size: 14px;padding: 4px 0 0 36px ;color:#bb8940;background-image: url(img/ts_03.png);background-repeat: no-repeat;background-position: 10px 8px;font-weight: bold">温馨提示</p>
+            <ul class="ts">
+                <li><span>*</span>该页面主要显示的是XXXX区域详情类容。</li>
+
+            </ul>
+            <div class="department_top" style="padding-top: 10px">
+            <button>区域添加</button>
+            </div>
+        </div>
+        <div class="whDiv">
+            <div class="l_left wh">
+                <div class="department_main">
+                    <label>区域编号：</label><input type="text" disabled="true">
+                </div>
+                <div class="department_main">
+
+                    <label>区域名称：</label><input type="text" disabled="true" id="partName"><span  id="partSpan"></span>
+                </div>
+                <div class="department_main">
+                    <label>区域级别：</label><select><option></option></select>
+                </div>
+                <div class="department_main">
+                    <label>上级区域：</label><select><option></option></select>
+                </div>
+
+                <div class="department_main">
+                    <label style="float: left;line-height: 200px">区域备注：</label><textarea disabled="true" id="note"></textarea>
+                </div>
+            </div>
+            <div class="r_right divMap" id="allmap"></div>
+        </div>
+
+
+
+
+
+        <div class="departments_btn"><button onclick="save()" >完成</button></div>
+        <div class="departments_btn01"><button class="blueBg">修改</button><button class="blueRed">删除</button></div>
+
+    </div>
+    <div class="clear"></div>
+
+
+</div>
+<script src="js/jquery/jQuery-2.2.0.min.js"></script>
+<script type="text/javascript" src="js/ztree/jquery.ztree.core-3.5.js"></script>
+<script type="text/javascript" src="js/ztree/jquery.ztree.excheck-3.5.js"></script>
+<script type="text/javascript" src="js/ztree/jquery.ztree.exedit-3.5.js"></script>
+<script src="js/localLight.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=5ieMMexWmzB9jivTq6oCRX9j&callback"></script>
+
+<script>
+    $(".department_top").click(function(){
+        $(".departments_btn").show();
+        $(".departments_btn01").hide();
+        $(".department_main input").attr("disabled",false);
+        $(".department_main textarea").attr("disabled",false);
+
+    })
+
+
+</script>
+<script>
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");    // 创建Map实例
+
+    var point = new BMap.Point(104.557183, 30.40643);
+    map.centerAndZoom(point, 15);
+
+    //添加地图类型控件
+    map.addControl(new BMap.MapTypeControl({
+        mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));
+    map.setCurrentCity("简阳");          // 设置地图显示的城市 此项是必须设置的
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+    var circle = new BMap.Circle(point,500,{strokeColor:"red", strokeWeight:2, strokeOpacity:0.5}); //创建圆
+    //添加覆盖物
+    function add_overlay(){
+
+        map.addOverlay(circle);            //增加圆
+
+    }
+function init(){
+    add_overlay();
+}
+</script>
+</body>
+</html>

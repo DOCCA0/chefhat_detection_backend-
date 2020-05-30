@@ -1,0 +1,187 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
+    <title></title>
+    <link href="js/bstable/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="js/bstable/css/bootstrap-table.css" rel="stylesheet" type="text/css">
+    <link href="css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css" />
+    <link href="css/table.css" rel="stylesheet" type="text/css" />
+</head>
+<body style="background-color: #ecf0f5;font-family: 微软雅黑;color: #475059;min-width: 1000px;overflow: auto">
+<div class="news_main">
+
+    <div class="l_left news_left">
+
+        <h6>区域目录</h6>
+        <div class="tree_left_top">
+            <div class=" order_ztree l_left organize_ztree" style="width: 100%">
+                <p><ul id="treeDemo" class="ztree"  style=" overflow:auto;margin-left: 20px"></ul></p>
+            </div>
+        </div>
+    </div>
+    <div class="l_left news_right">
+        <h6>策略管理</h6>
+        <div class="notice_check">
+
+              <p>
+
+                  <label>策略名称：</label><input type="text" class="find_input">
+                  <label>启用状态：</label><select class="find_input"></select>
+                  <button class="check_btn">查询</button>
+              </p>
+
+
+        </div>
+        <div class="clear"></div>
+
+        <div class="notice_check">
+            <div class="notice_nav r_right paddingBotme">
+                <P>
+                <a class="btn btn-default" onclick="add()"><span class="glyphicon glyphicon-plus"></span>新增</a>
+                <a class="btn btn-default"><span class="glyphicon glyphicon-remove"></span>删除</a>
+
+                </P>
+            </div>
+        </div>
+            <div class="clear"></div>
+
+        <ul class="news_table department_table">
+            <li>
+                <table id="table" class="table_style" style="margin: 0 auto" ></table>
+            </li>
+        </ul>
+
+    </div>
+    <div class="clear"></div>
+
+</div>
+<script src="js/jquery/jQuery-2.2.0.min.js"></script>
+<script src="js/bstable/js/bootstrap.min.js"></script>
+<script src="js/bstable/js/bootstrap-table.js"></script>
+<script src="js/bstable/js/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="js/ztree/jquery.ztree.core-3.5.js"></script>
+<script type="text/javascript" src="js/ztree/jquery.ztree.excheck-3.5.js"></script>
+<script type="text/javascript" src="js/ztree/jquery.ztree.exedit-3.5.js"></script>
+<script src="js/layer_v2.1/layer/layer.js"></script>
+<script src="js/localLight.js"></script>
+
+<script>
+    $(function () {
+        $('#table').bootstrapTable({
+            method: "get",
+            striped: true,
+            singleSelect: false,
+            url: "json/idel.json",
+            dataType: "json",
+            pagination: true, //分页
+            pageSize: 10,
+            pageNumber: 1,
+            search: false, //显示搜索框
+            contentType: "application/x-www-form-urlencoded",
+            queryParams:null,
+            columns: [
+                {
+                    checkbox: "true",
+                    field: 'check',
+                    align: 'center',
+
+                    valign: 'middle'
+                }
+                ,
+                {
+                    title: "策略编号",
+                    field: 'id',
+                    align: 'center',
+                    width: 160,
+                    valign: 'middle'
+                },
+                {
+                    title: "策略名称",
+                    field: 'name',
+                    align: 'center',
+                    width: 160,
+                    valign: 'middle'
+                },
+                {
+                    title: "分组编号",
+                    field: 'num',
+                    align: 'center',
+                    width: 80,
+                    valign: 'middle'
+                },
+                {
+                    title: '区域编号',
+                    field: 'url',
+                    align: 'center',
+                    width: 120,
+                    valign: 'middle'
+                },
+                {
+                    title: '启用状态',
+                    field: 'status',
+                    width: 70,
+                    align: 'center',
+                    formatter: function (cellval, row) {
+                        if (cellval =='未启用'){
+                            return '<div  style="color:red">'+cellval+'</div>';
+                        } else  if (cellval =='启用'){
+                            return '<div  style="color:green">'+cellval+'</div>';
+                        }else {
+                            return cellval;
+                        }}
+                },
+
+                {
+                    title: '开灯时间',
+                    field: 'time',
+                    align: 'center',
+                    width: 120,
+                    valign: 'middle'
+                },
+                {
+                    title: '开灯周期',
+                    field: 'low',
+                    align: 'center',
+                    width: 120,
+                    valign: 'middle'
+                },
+
+                {
+                    title: '操作',
+                    field: 'person',
+                    width: 120,
+                    align: 'center',
+                    formatter: function (cellval, row) {
+                        var  e = '<button  id="add" data-id="98" class="btn btn-xs btn-success" onclick="add(\'' + row.id + '\')">编辑</button> ';
+
+                        var  d = '<button  id="add" data-id="98" class="btn btn-xs btn-danger" onclick="del(\'' + row.id + '\')">删除</button> ';
+                        return  e + d;
+                    }
+                }
+
+            ]
+        });
+    });
+    function change(){
+        $(".dropdown-menu>li").click(function(){
+            $(".change").html($(this).html())
+        })
+    }
+    function add(){
+        layer.open({
+            type: 2,
+            title: '添加详情',
+            shadeClose: true,
+            shade: 0.5,
+            skin: 'layui-layer-rim',
+            closeBtn:1,
+            area: ['760px', '450px'],
+            content: 'idelTail.html'
+        });
+    }
+
+</script>
+</body>
+</html>

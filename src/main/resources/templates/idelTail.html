@@ -1,0 +1,426 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+    <!--<link href="css/tree.css" rel="stylesheet" type="text/css">-->
+    <link href="css/tail.css" rel="stylesheet" type="text/css">
+    <link href="js/bstable/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <style>
+        #table thead tr{background-color: #e7f0f6 !important;}
+        ul{list-style: none}
+        .clear{clear: both}
+        .time,.time1{
+            position: absolute;
+            text-align: center;
+            top:32px;
+            left: 0;
+            width: 300px;
+            height: 250px;
+            background-color: #fff;
+            border: 1px #ccc solid;
+            display: none
+        }
+        #table td{text-align: center !important;}
+        .myself,.month,.week{width: 210px;margin: 10px auto 0 auto;display: none}
+        .week{margin-top: 72px;width: 300px;font-weight: bold}
+        .day{width: 260px;margin: 10px auto 0 auto;display: none}
+        .month ul,.week ul{margin: 0 8px}
+        .week ul li{float: left;padding: 2px 6px;font-size: 13px;border-radius: 2px;cursor: pointer;margin-right:2px }
+        .month ul li{float: left;width:25px;height:25px;line-height:25px;border-radius: 50%;font-size: 14px;cursor: pointer;margin:2px 2px 2px 0;font-weight: bold}
+        .myself input,.month input,.week input{width: 200px !important;margin-bottom: 10px;text-align: center}
+        .day p,.week p{font-size: 18px;font-weight: 700;color: #2980B9;cursor: pointer;line-height: 30px}
+        .weekActive,.monthActive{background-color: #00a0cc;color: #fff}
+        .starHour,.starMinute,.endHour,.endMinute{position:relative;width: 36px !important;text-align: center;height: 22px !important;margin:0 2px -7px 2px;border: 1px #ccc solid;border-radius: 2px;}
+        .day{line-height: 22px;font-size: 12px}
+        .starHour a,.starMinute a,.endHour a,.endMinute a{display: inline-block;position: absolute;width: 32px;height: 22px;border-radius: 2px;left:0;top: 0;text-align: left;padding-left: 4px;cursor: pointer}
+        .starHour ul,.starMinute ul,.endHour ul,.endMinute ul{display:none;position: absolute;width: 36px;height: 160px;border-radius: 2px;left:0;top: 24px;border: 1px #ccc solid;overflow-y: auto;padding: 5px 0;cursor: pointer}
+    </style>
+</head>
+<body onload="init()">
+<div class="warrant_nav">
+    <ul>
+        <li class="warrant_active"><span class="step">1</span>基本信息<span class="chevron"></span></li>
+        <li><span class="step">2</span>计划时间<span class="chevron"></span></li>
+
+    </ul>
+
+    <div class="clear"></div>
+</div>
+
+<div class="warrant_main">
+    <div class="tree_left" style="display: block">
+        <form>
+            <div class="top table2_top">
+                <div>
+                    <div class="top_out">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td>策略编号<span>*</span></td>
+                                <td><input type="text" class="long_text" required></td>
+                                <td>策略名称<span>*</span></td>
+                                <td><input type="text" class="long_text" required></td>
+                            </tr>
+                            <tr>
+                                <td>分组编号<span></span></td>
+                                <td><input type="text" class="long_text" required></td>
+                                <td>区域编号<span></span></td>
+                                <td><input type="text" class="long_text" required></td>
+                            </tr>
+                            <tr>
+                                <td>是否启用<span></span></td>
+                                <td colspan = "8" style="text-align: left"><select>
+                                    <option>是</option>
+                                    <option>否</option>
+                                </select></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="tree_left">
+        <form>
+            <div class="top table2_top">
+                <div>
+                    <div class="top_out">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td>开灯周期<span></span></td>
+                                <td style="position: relative">
+                                    <input type="text"  class="long_text work-time" style="width: 300px;color: #000">
+                                    <div class="time" onclick="time1(event)">
+                                        <div style="margin-top: 10px">
+                                            <button  type="button" class="btn btn-primary btn-sm" style="width: 90px">每周</button>
+                                            <button  type="button" class="btn btn-primary btn-sm" style="width: 90px">每月</button>
+                                            <button  type="button" class="btn btn-primary btn-sm" style="width: 90px">自定义</button>
+                                        </div>
+                                        <div class="time-main">
+                                            <div class="week" style="display: block">
+                                                <ul>
+                                                    <li>周一</li>
+                                                    <li>周二</li>
+                                                    <li>周三</li>
+                                                    <li>周四</li>
+                                                    <li>周五</li>
+                                                    <li>周六</li>
+                                                    <li>周日</li>
+                                                </ul>
+                                                <div class="clear" style="margin-bottom: 10px"></div>
+                                            </div>
+                                            <div class="month">
+                                                <ul>
+                                                    <li style="margin-left: 27px;">1</li>
+                                                    <li>2</li>
+                                                    <li>3</li>
+                                                    <li>4</li>
+                                                    <li>5</li>
+                                                    <li>6</li>
+                                                    <li>7</li>
+                                                    <li>8</li>
+                                                    <li>9</li>
+                                                    <li>10</li>
+                                                    <li>11</li>
+                                                    <li>12</li>
+                                                    <li>13</li>
+                                                    <li>14</li>
+                                                    <li>15</li>
+                                                    <li>16</li>
+                                                    <li>17</li>
+                                                    <li>18</li>
+                                                    <li>19</li>
+                                                    <li>20</li>
+                                                    <li>21</li>
+                                                    <li>22</li>
+                                                    <li>23</li>
+                                                    <li>24</li>
+                                                    <li>25</li>
+                                                    <li>26</li>
+                                                    <li>27</li>
+                                                    <li>28</li>
+                                                    <li>29</li>
+                                                    <li>30</li>
+                                                </ul>
+                                                <div class="clear"></div>
+                                            </div>
+                                            <div class="myself">
+                                                <input type="text" id="time">
+                                            </div>
+                                        </div>
+                                        <div class="time-btn" style="position: absolute;bottom: 6px;left:6px;">
+                                            <button class="btn btn-success btn-sm" type="button" onclick="weekSave()" style="width: 140px">确认</button>
+                                            <button class="btn btn-danger btn-sm" type="button" onclick="removeWeek()" style="width: 140px">取消</button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>开灯时间段<span></span></td>
+                                <td style="position: relative">
+                                    <input type="text"  class="long_text time-time" style="width: 300px;color: #000">
+                                    <div class="time1" onclick="time1(event)">
+                                        <div class="time-main">
+                                            <div class="day" style="display: block">
+                                                <sapn>时间段:</sapn>
+                                                <div class="starHour" style="display: inline-block">
+                                                    <a id="starHour">00</a>
+                                                    <ul class="hourUl"></ul>
+                                                </div>
+                                                :
+                                                <div class="starMinute" style="display: inline-block;margin-right: 5px">
+                                                    <a id="starMinute">00</a>
+                                                    <ul class="minuteUl"></ul>
+                                                </div>
+                                                至
+                                                <div class="endHour" style="display: inline-block;margin-left: 5px">
+                                                    <a id="endHour">00</a>
+                                                    <ul class="hourUl"></ul>
+                                                </div>
+                                                :
+                                                <div class="endMinute" style="display: inline-block;margin-right: 5px">
+                                                    <a id="endMinute">00</a>
+                                                    <ul class="minuteUl"></ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="time-btn" style="position: absolute;bottom: 6px;left:6px;">
+                                            <button class="btn btn-success btn-sm" type="button" onclick="timeSave()" style="width: 140px">确认</button>
+                                            <button class="btn btn-danger btn-sm" type="button" onclick="removeTime()" style="width: 140px">取消</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="tree_left last_treeLeft">
+        <div class="l_left" style="width: 60%;margin:6px 0.5% 0 0.5%;">
+            <table id="table" class="table_style" style="margin: 0 auto" > </table>
+        </div>
+        <div class="l_left" style="width: 39%;border-left:1px #ccc solid;height: 400px;overflow: hidden">
+            <div id="allmap" style="width: 100%;height: 100%"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="notice_bot">
+    <div class="l_left"><input type="checkbox" checked="checked"/>保存并关闭窗口</div>
+    <div class="r_right but_p"><button class="but_save"  onclick="Cancel()">保存</button><button class="but_close" onclick="Cancel()">关闭</button></div>
+</div>
+<script src="js/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=5ieMMexWmzB9jivTq6oCRX9j"></script>
+<script src="js/bstable/js/bootstrap.min.js"></script>
+<script src="js/bstable/js/bootstrap-table.js"></script>
+<script src="js/bstable/js/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="js/date/js/laydate.js"></script>
+<script src="js/baidu.js"></script>
+
+<script>
+    var hour=0,minute=0;
+    var week=[],month=[];
+    $(function(){
+        table();
+        nav();
+        $("body").click(function(){
+            $(".time").hide();
+            $(".time1").hide()
+        });
+        $(".time>div>button").each(function(index){
+            $(this).click(function(event){
+                event.stopPropagation();
+                hour=0;
+                minute=0;
+                $(".minuteVal").val("00");
+                $(".hourVal").val("00");
+                $(".time-main>div").eq(index).show().siblings("div").hide().stop();
+            })
+        });
+        $(".week ul li").each(function(index){
+            $(this).click(function(event){
+                event.stopPropagation();
+                if($(this).is(".weekActive")){
+                    $(this).removeClass("weekActive");
+                    week.splice($.inArray(index+1,week),1);
+                }else{
+                    $(this).addClass("weekActive");
+                    week.push(index+1);
+                }
+            })
+        });
+        $(".month ul li").each(function(index){
+            $(this).click(function(event){
+                event.stopPropagation();
+                if($(this).is(".monthActive")){
+                    $(this).removeClass("monthActive");
+                    month.splice($.inArray(index+1,month),1);
+                }else{
+                    $(this).addClass("monthActive");
+                    month.push(index+1);
+                }
+            })
+        });
+        $(".work-time").click(function(event){
+            event.stopPropagation();
+            $(".time").show()
+        });
+        $(".time-time").click(function(event){
+            event.stopPropagation();
+            $(".time1").show()
+        })
+    });
+    function init(){
+        var hourHtml="",minuteHtml="";
+        for(var i= 0;i<24;i++){
+            if(i<10){
+                hourHtml+="<li>"+"0"+i+"</li>"
+            }else{
+                hourHtml+="<li>"+i+"</li>"
+            }
+
+        }
+        for(var j= 0;j<60;j++){
+            if(j<10){
+                minuteHtml+="<li>"+"0"+j+"</li>"
+            }else{
+                minuteHtml+="<li>"+j+"</li>"
+            }
+
+        }
+        $(".hourUl").append(hourHtml);
+        $(".minuteUl").append(minuteHtml);
+        $(".day>div").each(function(){
+            $(this).find("a").click(function(){
+                $(this).siblings("ul").slideDown().parent().siblings("div").find("ul").hide();
+            });
+            $(this).find("ul>li").each(function(){
+                $(this).click(function(){
+                    $(this).parent("ul").hide();
+                    $(this).parent().siblings("a").html($(this).html());
+                })
+
+            })
+        });
+    }
+    function nav(){
+        $(".warrant_nav ul li").each(function(index){
+            $(this).click(function(){
+                $(".warrant_nav ul li").removeClass("warrant_active");
+                $(this).addClass("warrant_active");
+                $(".warrant_main .tree_left").eq(index).show().siblings(".tree_left").stop().hide();
+            })
+        })
+    }
+    function table(){
+        $('#table').bootstrapTable({
+            method: "get",
+            url: "json/line.json",
+            striped: true,
+            singleSelect: false,
+            dataType: "json",
+            pagination: true, //分页
+            pageSize: 7,
+            pageNumber: 1,
+            search: false, //显示搜索框
+            contentType: "application/x-www-form-urlencoded",
+            queryParams: false,
+            columns: [
+                {
+                    checkbox: "true",
+                    field: 'check',
+                    align: 'center',
+                    valign: 'middle'
+                }
+                ,
+                {
+                    title: '线路名称',
+                    field: 'name',
+                    align: 'center',
+                    valign: 'middle'
+                },
+
+                {
+                    title: '所属区域',
+                    field: 'work',
+                    align: 'center'
+                },
+                {
+                    title: '操作',
+                    field: '',
+                    align: 'center',
+                    formatter: function (value, row) {
+                        var  e = '<button  id="add" class="btn btn-success btn-xs" data-id="98"  onclick="line(\'' + row.id + '\')">查看线路</button> ';
+                        return e;
+                    }
+                }
+            ]
+        });
+    }
+    function time1(event){
+        event.stopPropagation();
+    }
+    function Cancel() {
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
+    }
+    function save(){
+        layer.msg('数据提交中', {
+            icon: 16,
+            shade: 0.01,
+            time: 20000
+        });
+        setTimeout(function(){
+            layer.closeAll('dialog');
+        }, 3000);
+    }
+    !function(){
+        laydate.skin('danlan');//切换皮肤，请查看skins下面皮肤库
+        laydate({elem: '#time'});//绑定元素
+    }();
+    function weekSave(){
+        var Html="";
+        var htmlWeek="week:";
+        var htmlMonth="month:";
+        var htmlMyself = "myself:";
+
+        htmlWeek += week.toString();
+        htmlMonth += month.toString();
+        htmlMyself+=$("#time").val();
+        if(week.length>0){
+            Html += htmlWeek +";";
+        }
+        if(month.length>0){
+            Html += htmlMonth +";";
+        }
+        if($("#time").val()){
+            Html += htmlMyself +";";
+        }
+        $(".work-time").val(Html);
+        removeWeek()
+    }
+    function timeSave(){
+        var Html="";
+        var htmlDay = "";
+        htmlDay+= $("#starHour").html()+":"+$("#starMinute").html()+" 至 "+$("#endHour").html()+":"+$("#endMinute").html();
+        if($("#starHour").val() != "00"){
+            Html += htmlDay;
+        }
+        $(".time-time").val(Html);
+        removeTime()
+    }
+    function removeWeek(){
+        $(".time").hide()
+    }
+    function removeTime(){
+        $(".time1").hide()
+    }
+
+</script>
+</body>
+</html>

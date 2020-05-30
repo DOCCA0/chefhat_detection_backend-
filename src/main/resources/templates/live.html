@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">
+<video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto" width="1080" height="720" loop="loop" webkit-playsinline>
+    <source src="rtsp://58.221.119.138:9090/dss/monitor/param?cameraid=1000200%241&substream=1" type='rtsp/flv'>
+</video>
+<script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
+<script>
+    videojs.options.flash.swf = 'video.swf';
+    videojs('example_video_1').ready(function() {
+        this.play();
+    });
+</script>
+</body>
+</html>

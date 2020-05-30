@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login</title>
+<link href="css/MemberLogin.css" rel='stylesheet' type='text/css' />
+</head>
+<body style="overflow: hidden">
+	<div class="main">
+		<div class="login-form">
+			<h1>厨师帽实时检测系统</h1>
+			<div class="head"><img src="../../../img/adminLogin.png" alt=""/></div>
+			<form id="loginForm">
+				用户名：<input type="text" id="username" placehoder="用户名" />
+				密码：<input type="password" id="password" placehoder="登录密码" />
+
+
+			</form>
+		</div>
+	</div>
+	<!-- <div class="loginBtn" >
+		<p>版权所有2017杭州天夏科技集团有限公司</p>
+	</div> -->
+	<script src="../js/jquery/jQuery-2.2.0.min.js"></script>
+	<script>
+        $(document).ready(function() {
+
+            $('#btn_login').click(function(){
+                debugger;
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+					data:{
+                        sys:$("#sys").val(),
+                        username:$("#username").val(),
+                        password:$("#password").val(),
+                        rememberMe:$('#rememberMe').is(":checked")?1:0
+                    },
+                    url: "/sys/login.shtm",
+                    success: function (result) {
+                        debugger;
+                        if (result.code == 200) {
+                            window.location.href =  '/page/index.shtm?sys='+result.sys;
+                        }else{
+                            alert(result.msg);
+                        }
+                    },
+                    error : function() {
+                    }
+                });
+			});
+
+
+        });
+	</script>
+</body>
+</html>

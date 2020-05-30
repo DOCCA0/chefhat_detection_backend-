@@ -1,0 +1,50 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
+    <title></title>
+    <link href="js/bstable/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="js/bstable/css/bootstrap-table.css" rel="stylesheet" type="text/css">
+    <link href="css/table.css" rel="stylesheet" type="text/css">
+</head>
+<body style="background-color: #ecf0f5;font-family: 微软雅黑;color: #475059;min-width: 1000px;overflow: auto" onload="tableLoad()">
+<div class="notice_main">
+    <h6>路灯组管理列表</h6>
+    <div style="border-bottom: 1px #ccc solid;padding-bottom: 8px">
+        <p style="line-height: 24px;font-size: 14px;padding: 4px 0 0 36px ;color:#bb8940;background-image: url(img/ts_03.png);background-repeat: no-repeat;background-position: 10px 8px;font-weight: bold">温馨提示</p>
+        <ul class="ts">
+            <li><span>*</span>该页面主要显示的是分组管理的信息，并提供新增，编辑等操作</li>
+
+        </ul>
+    </div>
+
+    <div class="notice_check">
+        <label class="">分组编号：</label> <input type="text" class="find_input">
+        <label class="">分组名称：</label> <input type="text" class="find_input">
+
+        <button class="check_btn">查询</button>
+
+
+
+
+
+    <div class="notice_nav r_right">
+        <a class="btn btn-default" onclick="dataLead()"><span class="glyphicon glyphicon-plus"></span>新增</a>
+        <a class="btn btn-default"><span class="glyphicon glyphicon-remove"></span>删除</a>
+
+
+    </div>
+</div>
+    <table id="table" class="table_style" style="margin: 0 auto" > </table>
+</div>
+<script src="js/jquery/jQuery-2.2.0.min.js"></script>
+<script src="js/bstable/js/bootstrap.min.js"></script>
+<script src="js/bstable/js/bootstrap-table.js"></script>
+<script src="js/bstable/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="js/layer_v2.1/layer/layer.js"></script>
+<script src="js/groupLight.js"></script>
+
+
+</body>
+</html>

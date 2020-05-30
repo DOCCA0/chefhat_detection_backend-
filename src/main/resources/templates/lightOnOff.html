@@ -1,0 +1,146 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
+    <title>全局分析</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="js/bstable/css/bootstrap-table.css" rel="stylesheet" type="text/css">
+    <link href="css/table1.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body style="background-color: #ecf0f5;font-family: 微软雅黑;color: #475059;min-width: 1000px;overflow: auto">
+<div class="from_main" >
+    <div class="news_check">
+        <div class="check_left l_left">
+            <label>时间段<label>
+            <input type="date" class="find_input"/>
+
+
+
+        <button>查询</button>
+        </div>
+        <div class="check_right r_right">
+            <a class="btn btn-default"><span class=" glyphicon glyphicon-circle-arrow-down l_left"></span>打印</a>
+            <a class="btn btn-default"><span class=" glyphicon glyphicon-download-alt l_left"></span>导出</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div style="padding: 0 10px 0 10px ;border: 1px #ccc solid;background-color: #fff;">
+
+
+        <div class="e_chart">
+            <div class="charts l_left last_charts" style="width: 100%">
+                <p class="charts_p">开关灯记录分析<span class="r_right">更多></span></p>
+                <div id="container7" style="height:250px;"></div>
+                <div style="width: 100%;margin-top: 0px">
+                    <table class="annyTable" border="1">
+                        <tr>
+                            <td class="first_td">开关灯总数</td>
+                            <td class="">13025次</td>
+
+                        </tr>
+                        <tr>
+                            <td class="first_td">高新区</td>
+                            <td>120次</td>
+
+                        </tr>
+                        <tr>
+                            <td class="first_td">天府新区</td>
+                            <td>1230次</td>
+
+
+                        </tr>
+                        <tr>
+                            <td class="first_td">锦江区</td>
+                            <td>2301次</td>
+
+                        </tr>
+                        <tr>
+                            <td class="first_td">成华区</td>
+                            <td>2301次</td>
+
+                        </tr>
+                        <tr>
+                            <td class="first_td">青羊区</td>
+                            <td>2301次</td>
+
+                        </tr>
+                        <tr>
+                            <td class="first_td">金牛区</td>
+                            <td>5301次</td>
+
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+</body>
+<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+<script src="js/bstable/js/bootstrap.min.js"></script>
+<script src="js/bstable/js/bootstrap-table.js"></script>
+<script src="js/bstable/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="js/echarts-all.js"></script>
+
+<script>
+    $(function(){
+        var myChart = echarts.init($("#container7")[0]);
+        option = {
+
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['开灯记录数','关灯记录数']
+            },
+
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value/万',
+
+                }
+            ],
+            series : [
+                {
+                    name:'开灯记录数',
+                    type:'line',
+                    data:[310, 302, 301, 34, 390, 330, 320,10, 302, 201, 334, 190,],
+
+
+                },
+                {
+                    name:'关灯记录数',
+                    type:'line',
+                    data:[290, 320, 301, 34, 390, 330, 320,10, 302, 201, 334, 190,],
+
+
+                }
+
+
+
+            ]
+        };
+        myChart.setOption(option);
+    });
+</script>
+</html>

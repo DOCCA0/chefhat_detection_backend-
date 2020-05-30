@@ -1,0 +1,122 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="css/tail.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body style="border-radius: 8px;width: 680px" onload="init()">
+<form>
+    <div class="top table2_top">
+        <div>
+            <div class="top_out">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>报警编号<span>*</span></td>
+                        <td  style="text-align: left">
+                        <input type="text" >
+                    </td>
+                        <td>设备编号<span>*</span></td>
+                        <td  style="text-align: left">
+                            <input type="text"  >
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>灯具名称<span></span></td>
+                        <td><input type="text"  id="vs"></td>
+                        <td>报警类型<span></span></td>
+                        <td><select >
+                            <option>设备损坏</option>
+
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>报警时间<span></span></td>
+                        <td>
+                            <input type="text"  >
+                        </td>
+                        <td>处理状态<span></span></td>
+                        <td>
+                            <select id="stat">
+                                <option>全部</option>
+
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>备注<span></span></td>
+                        <td colspan = "8" style="text-align: left"> <textarea></textarea></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="notice_bot">
+            <div class="l_left"><input type="checkbox" checked="checked"/>保存并关闭窗口</div>
+            <div class="r_right but_p"><button class="but_save" type="submit" onclick="save()">保存</button><button class="but_close" onclick="Cancel()">关闭</button></div>
+        </div>
+    </div>
+</form>
+<script src="js/jquery-2.2.0.min.js"></script>
+<script src="js/bstable/js/bootstrap.min.js"></script>
+<script>
+    function Cancel() {
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
+    }
+    function save(){
+
+
+        var name=$("#name").val();
+
+       if(name!=""){
+           alert("保存成功");
+           Cancel();
+       }
+
+       else if(name==""){
+           alert("名称不能为空");
+       }
+
+
+    }
+    function init() {
+        $.ajax({
+            url:'json/部署清单列表.json',
+            type:"post",
+            dataType:"json",
+            success:function (res) {
+                if(res) {
+                    var data = res.data;
+                    $.each(data, function (index) {
+                        if (parent.ID == data[index].id) {
+                            $("#name").val(data[index].name);
+                            $("#ip").val(data[index].ip);
+                            $("#vs").val(data[index].version);
+                            $("#os").val(data[index].os);
+                            $("#time").val(data[index].installTime);
+                            $("#stat").val(data[index].status);
+                        }
+
+
+                    })
+                }
+                else{
+                    error(function () {
+                        alert("加载失败");
+
+                    })
+                }
+
+            }
+        })
+
+    }
+</script>
+</body>
+</html>
