@@ -3,7 +3,7 @@ package com.example.chefhat_detection.pojo;
 public class Kitchen {
     String name;
     int id;
-    HistoryVideo historyVideo;
+//    HistoryVideo historyVideo;
     Alarm alarm;
     String location;//厨房的地址
 
@@ -24,13 +24,13 @@ public class Kitchen {
         this.id = id;
     }
 
-    public HistoryVideo getHistoryVideo() {
-        return historyVideo;
-    }
-
-    public void setHistoryVideo(HistoryVideo historyVideo) {
-        this.historyVideo = historyVideo;
-    }
+//    public HistoryVideo getHistoryVideo() {
+//        return historyVideo;
+//    }
+//
+//    public void setHistoryVideo(HistoryVideo historyVideo) {
+//        this.historyVideo = historyVideo;
+//    }
 
     public Alarm getAlarm() {
         return alarm;

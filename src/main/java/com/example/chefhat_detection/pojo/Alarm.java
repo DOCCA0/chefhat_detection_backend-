@@ -1,6 +1,6 @@
 package com.example.chefhat_detection.pojo;
 
-import com.sun.xml.internal.messaging.saaj.soap.impl.CDATAImpl;
+
 
 import java.net.URL;
 import java.sql.Date;
@@ -12,7 +12,7 @@ public class Alarm {
     String name;//厨房的名字
     String type;//未戴厨师帽 和 佩戴休闲帽
 
-    String date;//2018-01-02 11:20:30的格式
+    String dateTime;//2018-01-02 11:20:30的格式
     String picPath;//未戴厨师帽的图片位置
 
     public Alarm() {
@@ -51,12 +51,12 @@ public class Alarm {
         this.type = type;
     }
 
-    public String getDate() {
-        return date;
+    public String getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(String datetime) {
-        date= datetime;
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
     public String getPicPath() {

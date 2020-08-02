@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.chefhat_detection.daos.KitchenDao">
+
+    <select id="getallkitchen" resultType="com.example.chefhat_detection.pojo.Kitchen">
+        select * from Kitchen;
+    </select>
+    <select id="getKitchenbyId" parameterType="java.lang.Integer" resultType="com.example.chefhat_detection.pojo.Kitchen">
+        SELECT * FROM `kichen` WHERE id=#{id}
+    </select>
+    <select id="getKitchenbyName" parameterType="java.lang.Integer" resultType="com.example.chefhat_detection.pojo.Kitchen">
+        SELECT * FROM `kichen` WHERE name=#{name }
+    </select>
+
+
+</mapper>

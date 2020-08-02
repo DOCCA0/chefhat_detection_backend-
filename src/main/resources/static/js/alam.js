@@ -37,7 +37,7 @@ function tableLoad(){
             },
             {
                 title: '违规时间',
-                field: 'date',
+                field: 'dateTime',
                 align: 'center',
                 valign: 'middle'
             },
