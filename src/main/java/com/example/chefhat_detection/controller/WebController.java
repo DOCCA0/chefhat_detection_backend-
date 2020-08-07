@@ -114,44 +114,44 @@ public class WebController {
         return kitchen;
     }
 
-    @PostMapping("/login")
-    public String getUserByName(@RequestParam("name") String name,
-                                @RequestParam("password") String password,
-                                Map<String, Object> map) throws SQLException, ClassNotFoundException {
-        User user;
-        if (userService.getUserByName(name) != null) {
-            user = userService.getUserByName(name);
-            if (password.equals(user.getPassword())) {
-                //登录成功
-                return "index";
-            }
-        }
-        map.put("msg", "用户名与密码不匹配");
-        return "login";
-    }
-
-
-    @PostMapping("/register")
-    public String postUser(@RequestParam("name") String name,
-                           @RequestParam("password") String password,
-                           @RequestParam("repeatPassword") String repeatPassword,
-                           Map<String, Object> map) throws SQLException, ClassNotFoundException {
-        Boolean success = true;
-        if (userService.getUserByName(name) != null) {
-            success = false;
-            map.put("msg1", "该用户名已被注册");
-        }
-        if (!password.equals(repeatPassword)) {
-            success = false;
-            map.put("msg2", "两次输入密码不一致");
-        }
-        if(success){
-            User user = new User(name,password);
-            userService.addUser(user);
-            return "login";
-        }else{
-            return "register";
-        }
-    }
+//    @PostMapping("/login")
+//    public String getUserByName(@RequestParam("name") String name,
+//                                @RequestParam("password") String password,
+//                                Map<String, Object> map) throws SQLException, ClassNotFoundException {
+//        User user;
+//        if (userService.getUserByName(name) != null) {
+//            user = userService.getUserByName(name);
+//            if (password.equals(user.getPassword())) {
+//                //登录成功
+//                return "index";
+//            }
+//        }
+//        map.put("msg", "用户名与密码不匹配");
+//        return "login";
+//    }
+//
+//
+//    @PostMapping("/register")
+//    public String postUser(@RequestParam("name") String name,
+//                           @RequestParam("password") String password,
+//                           @RequestParam("repeatPassword") String repeatPassword,
+//                           Map<String, Object> map) throws SQLException, ClassNotFoundException {
+//        Boolean success = true;
+//        if (userService.getUserByName(name) != null) {
+//            success = false;
+//            map.put("msg1", "该用户名已被注册");
+//        }
+//        if (!password.equals(repeatPassword)) {
+//            success = false;
+//            map.put("msg2", "两次输入密码不一致");
+//        }
+//        if(success){
+//            User user = new User(name,password);
+//            userService.addUser(user);
+//            return "login";
+//        }else{
+//            return "register";
+//        }
+//    }
 }
 

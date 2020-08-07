@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link href="css/MemberLogin.css" rel='stylesheet' type='text/css' />
+</head>
+<body style="overflow: hidden">
+<div class="main">
+    <div class="login-form">
+        <h1>厨师帽实时检测系统</h1>
+        <div class="head"><img src="../../../img/adminLogin.png" alt=""/></div>
+            <form id="loginForm" action="/register" method="post">
+                <input type="text" name="name" placeholder="用户名"  onblur="checkna()" required/><span class="tips" id="divname"></span>
+                <p style="color:red" th:text="${msg1}" th:if="${not #strings.isEmpty(msg1)}"></p>
+                <input type="password" name="password" placeholder="设置密码" onblur="checkpsd1()" required/><span class="tips" id="divpassword1"></span>
+                <input type="password" name="repeatPassword" placeholder="确认密码" onblur="checkpsd1()" required/><span class="tips" id="divpassword2"></span>
+                <p style="color:red" th:text="${msg2}" th:if="${not #strings.isEmpty(msg2)}"></p>
+                <button type="submit" value="注册" id="btn_login" class="butSyley">注册</button>
+                <a href="/login" class="aSyle">已有账户?去登录</a>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="../js/jquery/jQuery-2.2.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+
+        $('#btn_login').click(function(){
+            debugger;
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                data:{
+                    sys:$("#sys").val(),
+                    username:$("#username").val(),
+                    password:$("#password").val(),
+                    rememberMe:$('#rememberMe').is(":checked")?1:0
+                },
+                url: "/sys/login.shtm",
+                success: function (result) {
+                    debugger;
+                    if (result.code == 200) {
+                        window.location.href =  '/page/index.shtm?sys='+result.sys;
+                    }else{
+                        alert(result.msg);
+                    }
+                },
+                error : function() {
+                }
+            });
+        });
+
+
+    });
+</script>
+</body>
+</html>
