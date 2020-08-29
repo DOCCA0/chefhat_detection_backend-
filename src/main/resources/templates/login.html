@@ -4,16 +4,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Login</title>
-<link href="css/MemberLogin.css" rel='stylesheet' type='text/css' />
+<link th:href="@{css/MemberLogin.css}" rel='stylesheet' type='text/css' />
 </head>
 <body style="overflow: hidden">
 	<div class="main">
 		<div class="login-form">
 			<h1>厨师帽实时检测系统</h1>
+			<div th:if="${param.error}">
+				用户名或者密码错误</div>
+			<div th:if="${param.logout}">
+				您已经登出</div>
 			<div class="head"><img src="../../../img/adminLogin.png" alt=""/></div>
 				<p style="color:red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
 				<form id="loginForm" action="/login" method="post">
-					<input type="text" name="name" placeholder="请输入用户名"  onblur="checkna()" required/><span class="tips" id="divname"></span>
+					<input type="text" name="username" placeholder="请输入用户名"  onblur="checkna()" required/><span class="tips" id="divname"></span>
 					<input type="password" name="password" placeholder="请输入你的密码" onblur="checkpsd1()" required/><span class="tips" id="divpassword1"></span>
 					<button type="submit" value="登录" id="btn_login" class="butSyley">登录</button>
 					<a href="/register" class="aSyle">没有账户?去注册</a>
@@ -24,13 +28,7 @@
 		    </div>
 		</div>
 	</div>
-<!--
 
-		</div>
-	</div>
-	<div class="loginBtn" >
-		<p>版权所有2017杭州天夏科技集团有限公司</p>
-	</div> -->
 	<script src="../js/jquery/jQuery-2.2.0.min.js"></script>
 	<script>
         $(document).ready(function() {

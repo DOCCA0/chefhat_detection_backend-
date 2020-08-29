@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>厨师帽实时检测系统</title>
     <link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
@@ -21,45 +21,18 @@
                <img src="img/ligthLogo.png" />
             </a>
             <nav class="navbar navbar-static-top" style="display:block;font-weight: 500;font-size: 14px;color: #fff;padding-left: 10px">
-
                 <span class="index_top"><strong></strong></span>
-                <div class="navbar-custom-menu">
-<!--                    <ul class="nav navbar-nav">-->
-
-<!--                        <li class="dropdown user user-menu">-->
-<!--                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
-<!--                                <img src="img/user2-160x160.jpg" class="user-image" alt="User Image">-->
-<!--                                <span class="hidden-xs">administrator</span>-->
-<!--                            </a>-->
-<!--                            <ul class="dropdown-menu pull-right">-->
-<!--                                <li><a class="menuItem" data-id="userInfo" href=""><i class="fa fa-user"></i>个人信息</a></li>-->
-<!--                                <li><a><i class="fa fa-trash-o"></i>清空缓存</a></li>-->
-<!--                                <li id="color"><a><i class="fa fa-paint-brush"></i>皮肤设置</a>-->
-<!--                                    <div style="position: absolute;left:-90px;top:50px;border: 1px #eee solid;box-shadow: 0 6px 12px rgba(0,0,0,.175);display: none" id="color_div">-->
-<!--                                     <ul class="color_ul">-->
-<!--                                         <li style="background-color: green;color:green"></li>-->
-<!--                                         <li style="background-color: #3c8dbc;color: #3c8dbc"></li>-->
-<!--                                         <li style="background-color: red;color: red"></li>-->
-<!--                                         <li style="background-color: green;color:green"></li>-->
-<!--                                         <li style="background-color: #3c8dbc;color: #3c8dbc"></li>-->
-<!--                                         <li style="background-color: red;color: red"></li>-->
-<!--                                         <li style="background-color: green;color:green"></li>-->
-<!--                                         <li style="background-color: #3c8dbc;color: #3c8dbc"></li>-->
-<!--                                         <li style="background-color: red;color: red"></li>-->
-<!--                                     </ul>-->
-<!--                                    </div>-->
-<!--                                </li>-->
-<!--                                <script src="js/jquery/jQuery-2.2.0.min.js"></script>-->
-
-<!--                                <style>-->
-
-<!--                                </style>-->
-<!--                                <li class="divider"></li>-->
-<!--                                <li><a><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-<!--                    </ul>-->
+                <div sec:authorize="!isAuthenticated()" class="navbar-custom-menu">
                     <a href="/login" class="aSyle">登录/注册</a>
+                </div>
+                <div sec:authorize="isAuthenticated()" class="navbar-custom-menu">
+                    <a class= "btn btn-link" style="color: whitesmoke;font-size: large">
+                        <span>用户：</span>
+                        <span sec:authentication="name" ></span>
+<!--                        <span sec:authentication="principal.getAuthorities().contains("ROOT")">超级管理员</span>-->
+                        <span>&nbsp;&nbsp;&nbsp;</span>
+                    </a>
+                     <a href="/logout"><span><img height="20" width="20" src="/img/logout.png" /></span> <span>&nbsp;&nbsp;&nbsp;</span></a>
                 </div>
             </nav>
         </header>

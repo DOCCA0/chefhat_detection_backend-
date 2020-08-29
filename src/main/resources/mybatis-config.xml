@@ -23,6 +23,8 @@
     <!-- 映射器 -->
     <mappers>
         <mapper resource="com/example/chefhat_detection/mapper/AlarmDaoMapper.xml" />
+        <mapper resource="com/example/chefhat_detection/mapper/KitchenDaoMapper.xml" />
+        <mapper resource="com/example/chefhat_detection/mapper/UserDaoMapper.xml" />
     </mappers>
 
 </configuration>

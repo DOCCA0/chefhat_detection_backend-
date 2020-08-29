@@ -11,8 +11,8 @@
     <div class="login-form">
         <h1>厨师帽实时检测系统</h1>
         <div class="head"><img src="../../../img/adminLogin.png" alt=""/></div>
-            <form id="loginForm" action="/register" method="post">
-                <input type="text" name="name" placeholder="用户名"  onblur="checkna()" required/><span class="tips" id="divname"></span>
+            <form id="loginForm" action="/doRegister" method="post">
+                <input type="text" name="username" placeholder="用户名"  onblur="checkna()" required/><span class="tips" id="divname"></span>
                 <p style="color:red" th:text="${msg1}" th:if="${not #strings.isEmpty(msg1)}"></p>
                 <input type="password" name="password" placeholder="设置密码" onblur="checkpsd1()" required/><span class="tips" id="divpassword1"></span>
                 <input type="password" name="repeatPassword" placeholder="确认密码" onblur="checkpsd1()" required/><span class="tips" id="divpassword2"></span>

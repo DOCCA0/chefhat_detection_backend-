@@ -7,5 +7,6 @@ import java.util.Set;
 public interface AlarmDao {
     Set<Alarm> getallAlarm();
     Alarm getAlarmbyId(int id);
-    Alarm getAlarmbyName(String name);
+    Set<Alarm> getAlarmbyName(String name);
+    Set<Alarm>getAlarmbyUserame(String username);
 }

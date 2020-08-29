@@ -8,10 +8,14 @@
     <select id="getallAlarm" resultType="com.example.chefhat_detection.pojo.Alarm">
         select * from alarm,kitchen where alarm.id=kitchen.id;
     </select>
+
     <select id="getAlarmbyId" parameterType="java.lang.Integer" resultType="com.example.chefhat_detection.pojo.Alarm">
         SELECT * FROM `Alarm` WHERE id=#{id}
     </select>
     <select id="getAlarmbyName" parameterType="java.lang.String" resultType="com.example.chefhat_detection.pojo.Alarm">
         SELECT * FROM `Alarm` WHERE id = ANY(select id from kitchen WHERE name=#{name})
+    </select>
+    <select id="getAlarmbyUserame" parameterType="java.lang.String" resultType="com.example.chefhat_detection.pojo.Alarm">
+        select * from alarm,kitchen where alarm.id=kitchen.id and kitchen.user=#{username};
     </select>
 </mapper>

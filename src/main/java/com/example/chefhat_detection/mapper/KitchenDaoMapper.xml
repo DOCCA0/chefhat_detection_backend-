@@ -12,7 +12,10 @@
         SELECT * FROM `kichen` WHERE id=#{id}
     </select>
     <select id="getKitchenbyName" parameterType="java.lang.Integer" resultType="com.example.chefhat_detection.pojo.Kitchen">
-        SELECT * FROM `kichen` WHERE name=#{name }
+        SELECT * FROM `kichen` WHERE name=#{name}
+    </select>
+    <select id="getKitchenByUsername" resultType="com.example.chefhat_detection.pojo.Kitchen">
+        select * from Kitchen where user=#{username};
     </select>
 
 
