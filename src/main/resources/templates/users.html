@@ -1,0 +1,101 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
+    <title></title>
+    <link href="js/bstable/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="js/bstable/css/bootstrap-table.css" rel="stylesheet" type="text/css">
+    <link href="css/table.css" rel="stylesheet" type="text/css">
+</head>
+<body style="background-color: #ecf0f5;font-family: 微软雅黑;color: #475059;min-width: 1000px;overflow: auto" onload="tableLoad()">
+<div class="notice_main">
+    <h6>不合格警告列表</h6>
+    <div style="border-bottom: 1px #ccc solid;padding-bottom: 8px">
+        <p style="line-height: 24px;font-size: 14px;padding: 4px 0 0 36px ;color:#bb8940;background-image: url(img/ts_03.png);background-repeat: no-repeat;background-position: 10px 8px;font-weight: bold">温馨提示</p>
+        <ul class="ts">
+            <li><span>*</span>该页面主要显示的是不合格警告的信息</li>
+
+        </ul>
+    </div>
+    <!-- 详细信息模态框（Modal） -->
+    <div>
+        <div class="modal fade" id="queryInfo" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">详细信息</h4>
+                    </div>
+                    <form
+                            action="${pageContext.request.contextPath }/productServlet?type=info"
+                            method="post">
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <span class="input-group-addon">用 户 i d</span>
+                                <input type="text" class="form-control" placeholder="用户id"
+                                       id="id" readonly="readonly">
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">用 户 名</span> <input
+                                    type="text" class="form-control" placeholder="用户名"
+                                    id="username" readonly="readonly">
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">密  码</span>
+                                <input type="text" class="form-control"
+                                       placeholder="请输入密码" id="password"
+                                      >
+                            </div>
+                            <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">角色</span>
+                                <input type="text" class="form-control"
+                                       placeholder="请输入使用部门名称" id="role">
+                            </div>
+                            <br />
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default"
+                                    data-dismiss="modal">关闭</button>
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal -->
+        </div>
+<!--    <div class="notice_check">-->
+<!--        <label class="">餐厅编号：</label> <input type="text" class="find_input" id="id">-->
+<!--        <label class="">餐厅名称：</label> <input type="text" class="find_input" id="name">-->
+<!--        <label class="">警告时间：</label> <input type="date" class="find_input" id="time">-->
+
+<!--        <button class="btn btn-primary" id="search_btn">查询</button>-->
+
+
+
+<!--        <div class="notice_nav r_right">-->
+<!--            <a class="btn btn-default"><span class="glyphicon glyphicon-export"></span>导出</a>-->
+<!--            <a class="btn btn-default"><span class="glyphicon glyphicon-print"></span>打印</a>-->
+
+
+<!--        </div>-->
+<!--    </div>-->
+    <table id="table" class="table_style" style="margin: 0 auto" > </table>
+</div>
+<script src="js/jquery/jQuery-2.2.0.min.js"></script>
+<script src="js/bstable/js/bootstrap.min.js"></script>
+<script src="js/bstable/js/bootstrap-table.js"></script>
+<script src="js/bstable/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="js/layer_v2.1/layer/layer.js"></script>
+<script src="js/users.js"></script>
+
+
+</body>
+</html>

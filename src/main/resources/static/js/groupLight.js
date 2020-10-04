@@ -100,6 +100,21 @@ function dataLead() {
         content: 'groupLightTail.html'
     });
 }
+function deleteUser() {
+    // layer.open({
+    //     type: 2,
+    //     title: '分组信息',
+    //     shade: 0.5,
+    //     skin: 'layui-layer-rim',
+    //     area: ['700px', '300px'],
+    //     shadeClose: true,
+    //     closeBtn: 1,
+    //     content: 'groupLightTail.html'
+    // });
+}
+function updateUser(){
+
+}
 
 //取消操作
 function cancel() {

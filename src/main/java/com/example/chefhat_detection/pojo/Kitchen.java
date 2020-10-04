@@ -10,7 +10,6 @@ import lombok.*;
 public class Kitchen {
     String name;
     int id;
-//    HistoryVideo historyVideo;
-    Alarm alarm;
+    String organization;
     String location;//厨房的地址
 }

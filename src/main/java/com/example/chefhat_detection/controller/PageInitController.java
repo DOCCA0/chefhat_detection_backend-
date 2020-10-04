@@ -28,6 +28,11 @@ public class PageInitController {
     public String register(){
         return "register";
     }
+    @GetMapping("/users")
+    public String users(){
+        return "users";
+    }
+
 
 
     

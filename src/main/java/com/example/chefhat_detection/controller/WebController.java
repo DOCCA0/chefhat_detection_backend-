@@ -90,17 +90,17 @@ public class WebController {
 //        return historyVideo;
 //    }
 
-    @GetMapping("/kitchens")
-    @ResponseBody
-    public Set<Kitchen> getAllKitchen() throws IOException {
-        SqlSessionFactory sqlSessionFactory = Util.getSqlSessionFactory();
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        KitchenDao mapper = sqlSession.getMapper(KitchenDao.class);
-        Set<Kitchen> kitchens = mapper.getallkitchen();
-        sqlSession.commit();
-        sqlSession.close();
-        return kitchens;
-    }
+//    @GetMapping("/kitchens")
+//    @ResponseBody
+//    public Set<Kitchen> getAllKitchen() throws IOException {
+//        SqlSessionFactory sqlSessionFactory = Util.getSqlSessionFactory();
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+//        KitchenDao mapper = sqlSession.getMapper(KitchenDao.class);
+//        Set<Kitchen> kitchens = mapper.getallkitchen();
+//        sqlSession.commit();
+//        sqlSession.close();
+//        return kitchens;
+//    }
 
     @GetMapping("/kitchens/id/{id}")
     @ResponseBody
@@ -136,6 +136,52 @@ public class WebController {
         sqlSession.commit();
         sqlSession.close();
         return "/login";
+    }
+
+    @GetMapping("/users/{username}")
+    @ResponseBody
+    public User getUserByUserName(@PathVariable("username") String username) throws IOException {
+        SqlSessionFactory sqlSessionFactory = Util.getSqlSessionFactory();
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserDao mapper = sqlSession.getMapper(UserDao.class);
+        User user = mapper.findUserByUserName(username);
+        sqlSession.commit();
+        sqlSession.close();
+        return user;
+    }
+
+    @GetMapping("/allUsers")
+    @ResponseBody
+    public Set<User> getAllUsers() throws  IOException {
+        SqlSessionFactory sqlSessionFactory = Util.getSqlSessionFactory();
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserDao mapper = sqlSession.getMapper(UserDao.class);
+        Set<User> userSet=  mapper.getAllUsers();
+        sqlSession.commit();
+        sqlSession.close();
+        return userSet;
+    }
+    @DeleteMapping("/users/delete/{username}")
+    public String deleteUser(@PathVariable("username") String username) throws IOException {
+        SqlSessionFactory sqlSessionFactory=Util.getSqlSessionFactory();
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserDao mapper = sqlSession.getMapper(UserDao.class);
+        mapper.deleteUser(username);
+        sqlSession.commit();
+        sqlSession.close();
+        return "/users";
+    }
+
+
+    @PostMapping("/users/update")
+    public String updateUser(User user) throws IOException {
+        SqlSessionFactory sqlSessionFactory = Util.getSqlSessionFactory();
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserDao mapper = sqlSession.getMapper(UserDao.class);
+        mapper.updateUserPassword(user.getUsername(),user.getPassword(),user.getEmail(),user.getRole());
+        sqlSession.commit();
+        sqlSession.close();
+        return "/users";
     }
 }
 

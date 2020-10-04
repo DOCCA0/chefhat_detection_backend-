@@ -8,7 +8,16 @@
     <select id="findUserByUserName" resultType="com.example.chefhat_detection.pojo.User">
         select * from users where username=#{username};
     </select>
+    <select id="getAllUsers" resultType="com.example.chefhat_detection.pojo.User">
+        select * from users
+    </select>
     <insert id="addUser" parameterType="com.example.chefhat_detection.pojo.User">
         INSERT into users(username,password) VALUES (#{username}, MD5(#{password}))
     </insert>
+    <delete id="deleteUser">
+        delete from users where username=#{username}
+    </delete>
+    <update id="updateUser">
+        update users set password=MD5(#{password}),email=#{email},role=#{email} where username=#{username}
+    </update>
 </mapper>
